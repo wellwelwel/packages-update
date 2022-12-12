@@ -1,5 +1,5 @@
 <h2 align="center">Packages Update</h2>
-<p align="center">🔗 A basic updater for packages, without any dependencies</p>
+<p align="center">📦 A basic <b>updater</b> for packages, <ins>without</ins> any dependencies</p>
 
 ### Install
 
@@ -21,6 +21,7 @@
       npx npu || npx npu --major
 
       # prettier: ^1.4.2 ➜ ^2.8.1
+      # ...
    ```
 
 -  Update to latest <b>minor</b> version
@@ -29,6 +30,7 @@
       npx npu --minor
 
       # prettier: ^1.4.2 ➜ ^1.19.1
+      # ...
    ```
 
 -  Update to latest <b>patch</b> version
@@ -37,18 +39,20 @@
       npx npu --patch
 
       # prettier: ^1.4.2 ➜ ^1.4.4
+      # ...
    ```
 
 Then, run `npm i` or `npm i --ignore-scripts` to install new versions 🚀
 
 <hr />
 
--  Only <b>lock curreny</b> version
+-  Only <b>lock current</b> versions
 
    ```shell
       npx npu --lock
 
       # prettier: ^1.4.2 ➜ 1.4.2
+      # ...
    ```
 
 Then, run `npm ci` or `npm ci --ignore-scripts` to install the static versions from `package-lock.json` 🔒
