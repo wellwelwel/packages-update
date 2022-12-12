@@ -27,10 +27,21 @@ const getLatestMinor = async (packageName, currentVersion) => {
    return latestMinor || currentVersion;
 };
 
-const getLatestMajor = async (packageName) =>
+const getLatestMajor = async (packageName, currentVersion) => {
+   const versions = await getAllVersions(packageName);
+
+   let latestMinor = '';
+
+   versions.forEach((version) => !/-/.test(version) && (latestMinor = version));
+
+   return latestMinor || currentVersion;
+};
+
+const getLatestVersion = async (packageName) =>
    JSON.parse(await cmd(`npm view ${packageName?.trim()?.toLowerCase()} version --json`));
 
 module.exports = {
+   latest: getLatestVersion,
    major: getLatestMajor,
    minor: getLatestMinor,
    patch: getLatestPatch,
