@@ -11,14 +11,24 @@
 
 #### Usage
 
-> `npx npu` or `npx npu --major`, `npx npu --minor`, `npx npu --patch` and `npx npu --lock`:
+> `npx npu`,  
+> `npx npu --latest`, `npx npu --major`, `npx npu --minor`, `npx npu --patch` and `npx npu --lock`:
 
 <hr />
+
+-  Update to <b>latest</b> version
+
+   ```shell
+      npx npu || npx npu --latest
+
+      # prettier: ^1.4.2 ➜ ^2.8.1
+      # ...
+   ```
 
 -  Update to latest <b>major</b> version
 
    ```shell
-      npx npu || npx npu --major
+      npx npu --major
 
       # prettier: ^1.4.2 ➜ ^2.8.1
       # ...
