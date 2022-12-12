@@ -1,69 +1,20 @@
 #! /usr/bin/env node
 
-const { exec } = require('child_process');
 const { readFileSync, writeFileSync } = require('fs');
 const { EOL } = require('os');
+const { log, styles: sh, showUpdated } = require('../src/personalize-console.cjs' || []);
+const getVersionBy = require('../src/get-versions.cjs');
 
-const [, , ...args] = process.argv;
-
-const sh = (command) =>
-   new Promise((resolve, reject) => exec(command, (error, stdout) => (!!error ? reject(error) : resolve(stdout))));
-
-const shStyles = {
-   yellow: '\x1b[33m',
-   green: '\x1b[32m',
-   blue: '\x1b[34m',
-   dim: '\x1b[2m',
-   reset: '\x1b[0m',
-   bold: '\x1b[1m',
-};
-
-const getAllVersions = async (packageName) =>
-   JSON.parse(await sh(`npm view ${packageName?.trim()?.toLowerCase()} versions --json`));
-
-const getLatestPatch = async (dependency, currentVersion) => {
-   const [major, minor] = currentVersion.split('.');
-   const versions = await getAllVersions(dependency);
-   const regex = new RegExp(`^${major}\\.${minor}`);
-
-   let latestPatch = '';
-
-   versions.forEach((version) => regex.test(version) && (latestPatch = version));
-
-   return latestPatch || currentVersion;
-};
-
-const getLatestMinor = async (dependency, currentVersion) => {
-   const [major] = currentVersion.split('.');
-   const versions = await getAllVersions(dependency);
-   const regex = new RegExp(`^${major}\\.`);
-
-   let latestMinor = '';
-
-   versions.forEach((version) => regex.test(version) && !/-/.test(version) && (latestMinor = version));
-
-   return latestMinor || currentVersion;
-};
-
-const getLatestMajor = async (packageName) =>
-   JSON.parse(await sh(`npm view ${packageName?.trim()?.toLowerCase()} version --json`));
-
-const updatePackages = async () => {
+(async () => {
+   const [, , ...args] = process.argv;
    const path = `${process.cwd()}/package.json`;
    const packageFile = readFileSync(path, 'utf-8');
    const packageJSON = JSON.parse(packageFile);
    const { dependencies, devDependencies } = packageJSON;
    const hasUpdate = [];
 
-   const options = {
-      major: getLatestMajor,
-      minor: getLatestMinor,
-      patch: getLatestPatch,
-      lock: true,
-   };
-
    const option =
-      args?.[0] && options?.[args?.[0]?.replace(/^--/, '')] ? args?.[0]?.replace(/^--/, '') : 'major' || 'major';
+      args?.[0] && getVersionBy?.[args?.[0]?.replace(/^--/, '')] ? args?.[0]?.replace(/^--/, '') : 'major' || 'major';
 
    const compareVersions = async (dependency) => {
       const dependencyType = dependencies?.[dependency] ? dependencies : devDependencies;
@@ -75,36 +26,31 @@ const updatePackages = async () => {
       }
 
       if (/-/g.test(currentVersion)) {
-         console.log(
-            `${shStyles.bold}${dependency}${shStyles.dim}:${shStyles.reset} \t${shStyles.dim}Ignoring tag version (${shStyles.yellow}${currentVersion}${shStyles.reset}${shStyles.dim})${shStyles.reset}`
+         log(
+            `${sh.bold}${dependency}${sh.dim}:${sh.reset} \t${sh.dim}Ignoring tag version (${sh.yellow}${currentVersion}${sh.reset}${sh.dim})${sh.reset}`
          );
          return;
       }
 
-      const latestVersion = await options[option](dependency, currentVersion);
+      const latestVersion = await getVersionBy[option](dependency, currentVersion);
 
       if (currentVersion !== latestVersion) {
          dependencyType[dependency] = `^${latestVersion}`;
 
-         hasUpdate.push(dependency);
-         console.log(
-            `${shStyles.bold}${dependency}${shStyles.dim}:${shStyles.reset} \t${shStyles.reset}${shStyles.yellow}${currentVersion}${shStyles.reset} \t${shStyles.dim}➜${shStyles.reset}   ${shStyles.green}${latestVersion}${shStyles.reset}`
-         );
+         hasUpdate.push({
+            packageName: dependency,
+            previousVersion: currentVersion,
+            newVersion: latestVersion,
+         });
       }
    };
 
-   console.log(`\n🤹 Looking for new ${shStyles.bold}${option}${shStyles.reset} versions...\n`);
+   log(`\n🤹 Looking for new ${sh.bold}${option}${sh.reset} versions...\n`);
 
    for (const dependency in dependencies) await compareVersions(dependency);
    for (const dependency in devDependencies) await compareVersions(dependency);
 
    writeFileSync(path, `${JSON.stringify(packageJSON, null, 3)}${EOL}`);
 
-   console.log(
-      hasUpdate.length > 0
-         ? `\nRun ${shStyles.bold}${shStyles.blue}npm i${shStyles.reset} to install new versions 🚀\n`
-         : `\nNothing to be updated ✅\n`
-   );
-};
-
-(async () => await updatePackages())();
+   hasUpdate.length > 0 ? showUpdated(hasUpdate) : log(`\nNothing to be updated ✅\n`);
+})();
