@@ -14,7 +14,7 @@ const getVersionBy = require('../src/get-versions.cjs');
    const hasUpdate = [];
 
    const option =
-      args?.[0] && getVersionBy?.[args?.[0]?.replace(/^--/, '')] ? args?.[0]?.replace(/^--/, '') : 'major' || 'major';
+      args?.[0] && getVersionBy?.[args?.[0]?.replace(/^--/, '')] ? args?.[0]?.replace(/^--/, '') : 'latest' || 'latest';
 
    const compareVersions = async (dependency) => {
       const dependencyType = dependencies?.[dependency] ? dependencies : devDependencies;
@@ -45,7 +45,7 @@ const getVersionBy = require('../src/get-versions.cjs');
       }
    };
 
-   log(`\n📦 Looking for new ${sh.bold}${option}${sh.reset} versions...\n`);
+   log(`\n📦 Looking for ${sh.bold}${option}${sh.reset} versions...\n`);
 
    for (const dependency in dependencies) await compareVersions(dependency);
    for (const dependency in devDependencies) await compareVersions(dependency);
