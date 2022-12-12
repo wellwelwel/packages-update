@@ -1,0 +1,42 @@
+{
+   "name": "packages-update",
+   "main": "./bin/index.cjs",
+   "version": "0.1.0",
+   "type": "module",
+   "bin": {
+      "packages-update": "bin/index.cjs",
+      "npu": "bin/index.cjs"
+   },
+   "scripts": {
+      "init": "npm i --ignore-scripts;",
+      "update": "npx npu; npm run init;",
+      "init:update": "npm run init; npm run update;",
+      "update:patch": "npm run update; npm version patch --no-git-tag-version;",
+      "update:minor": "npm run update; npm version minor --no-git-tag-version;",
+      "update:major": "npm run update; npm version major --no-git-tag-version;"
+   },
+   "devDependencies": {
+      "prettier": "^2.8.1"
+   },
+   "license": "MIT",
+   "keywords": [
+      "npm",
+      "package",
+      "packages",
+      "update",
+      "updater",
+      "registry",
+      "check",
+      "checker",
+      "version",
+      "versions",
+      "new",
+      "cli"
+   ],
+   "author": "https://github.com/wellwelwel",
+   "description": "🔗 A basic updater for packages, without any dependencies",
+   "engines": {
+      "node": ">=14.18.0 || >=16.0.0",
+      "npm": ">=7.0.2"
+   }
+}
