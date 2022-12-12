@@ -34,7 +34,7 @@
       "cli"
    ],
    "author": "https://github.com/wellwelwel",
-   "description": "🔗 A basic updater for packages, without any dependencies",
+   "description": "📦 A basic updater for packages, without any dependencies",
    "engines": {
       "node": ">=14.18.0 || >=16.0.0",
       "npm": ">=7.0.2"
