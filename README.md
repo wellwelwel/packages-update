@@ -25,6 +25,10 @@
       # ...
    ```
 
+   > -  Get the default latest version for each package
+
+<br />
+
 -  Update to latest <b>major</b> version
 
    ```shell
@@ -33,6 +37,10 @@
       # prettier: ^1.4.2 ➜ ^2.8.1
       # ...
    ```
+
+   > -  Get the highest version for each package, even if it is not the default latest
+
+<br />
 
 -  Update to latest <b>minor</b> version
 
@@ -43,6 +51,10 @@
       # ...
    ```
 
+   > -  Get the latest minor version for each package, before the next major version
+
+<br />
+
 -  Update to latest <b>patch</b> version
 
    ```shell
@@ -51,6 +63,10 @@
       # prettier: ^1.4.2 ➜ ^1.4.4
       # ...
    ```
+
+   > -  Get the latest patch version for each package, before the next minor version
+
+<br />
 
 Then, run `npm i` or `npm i --ignore-scripts` to install new versions 🚀
 
@@ -64,6 +80,10 @@ Then, run `npm i` or `npm i --ignore-scripts` to install new versions 🚀
       # prettier: ^1.4.2 ➜ 1.4.2
       # ...
    ```
+
+   > -  Just locks package versions, without checking versions or updating
+
+<br />
 
 Then, run `npm ci` or `npm ci --ignore-scripts` to install the static versions from `package-lock.json` 🔒
 
