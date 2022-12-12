@@ -12,14 +12,21 @@ const styles = {
 const showUpdated = (packages) => {
    const { bold, dim, reset, yellow, green, blue } = styles;
 
-   const largestPackageName = packages.reduce((acc, cur) =>
-      acc?.packageName?.length > cur?.packageName?.length ? acc.packageName : cur.packageName
+   const largestPackageName = packages.reduce(
+      (acc, cur) => (acc?.length > cur?.packageName?.length ? acc : cur.packageName),
+      ''
+   );
+
+   const largestPackagePreviousVersion = packages.reduce(
+      (acc, cur) => (acc?.length > cur?.previousVersion?.length ? acc : cur.previousVersion),
+      ''
    );
 
    const formattedPackages = packages.map((currentPackage) => {
       return {
          ...currentPackage,
          packageName: currentPackage.packageName.padEnd(largestPackageName.length, ' '),
+         previousVersion: currentPackage.previousVersion.padEnd(largestPackagePreviousVersion.length, ' '),
       };
    });
 
@@ -27,7 +34,7 @@ const showUpdated = (packages) => {
       const { packageName, previousVersion, newVersion } = currentPackage;
 
       log(
-         `${bold}${packageName}${reset} \t${reset}${yellow}${previousVersion}${reset} \t${dim}➜${reset}   ${green}${newVersion}${reset}`
+         `${bold}${packageName}${reset}    ${reset}${yellow}${dim}^${reset}${yellow}${bold}${previousVersion}${reset}  ${dim}➜${reset}  ${green}${dim}^${reset}${green}${bold}${newVersion}${reset}`
       );
    });
 

@@ -45,7 +45,7 @@ const getVersionBy = require('../src/get-versions.cjs');
       }
    };
 
-   log(`\n🤹 Looking for new ${sh.bold}${option}${sh.reset} versions...\n`);
+   log(`\n📦 Looking for new ${sh.bold}${option}${sh.reset} versions...\n`);
 
    for (const dependency in dependencies) await compareVersions(dependency);
    for (const dependency in devDependencies) await compareVersions(dependency);
