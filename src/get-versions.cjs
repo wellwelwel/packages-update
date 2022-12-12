@@ -30,11 +30,11 @@ const getLatestMinor = async (packageName, currentVersion) => {
 const getLatestMajor = async (packageName, currentVersion) => {
    const versions = await getAllVersions(packageName);
 
-   let latestMinor = '';
+   let latestMajor = '';
 
-   versions.forEach((version) => !/-/.test(version) && (latestMinor = version));
+   versions.forEach((version) => !/-/.test(version) && (latestMajor = version));
 
-   return latestMinor || currentVersion;
+   return latestMajor || currentVersion;
 };
 
 const getLatestVersion = async (packageName) =>
