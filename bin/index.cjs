@@ -1,6 +1,5 @@
 #! /usr/bin/env node
 
-const https = require('https');
 const { exec } = require('child_process');
 const { readFileSync, writeFileSync } = require('fs');
 const { EOL } = require('os');
@@ -19,23 +18,8 @@ const shStyles = {
    bold: '\x1b[1m',
 };
 
-const getAllVersions = async (dependency) => {
-   const versions = [];
-   const registry = await new Promise((resolve, reject) => {
-      let data = '';
-
-      https
-         .get(`https://registry.npmjs.org/${dependency?.trim()?.toLowerCase()}`, (resp) => {
-            resp.on('data', (chunk) => (data += chunk));
-            resp.on('end', () => resolve(JSON.parse(data)));
-         })
-         .on('error', (err) => reject(err.message));
-   });
-
-   for (const version in registry.versions) versions.push(version);
-
-   return versions;
-};
+const getAllVersions = async (packageName) =>
+   JSON.parse(await sh(`npm view ${packageName?.trim()?.toLowerCase()} versions --json`));
 
 const getLatestPatch = async (dependency, currentVersion) => {
    const [major, minor] = currentVersion.split('.');
@@ -62,7 +46,7 @@ const getLatestMinor = async (dependency, currentVersion) => {
 };
 
 const getLatestMajor = async (packageName) =>
-   (await sh(`npm view ${packageName?.trim()?.toLowerCase()} version`))?.trim();
+   JSON.parse(await sh(`npm view ${packageName?.trim()?.toLowerCase()} version --json`));
 
 const updatePackages = async () => {
    const path = `${process.cwd()}/package.json`;
