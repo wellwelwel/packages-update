@@ -11,8 +11,7 @@
 
 #### Usage
 
-`npx npu`,  
- `npx npu --latest`, `npx npu --major`, `npx npu --minor`, `npx npu --patch` or `npx npu --lock`:
+`npx npu`
 
 <hr />
 
