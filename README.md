@@ -16,7 +16,7 @@
 
 <hr />
 
--  Update to <b>latest</b> version
+-  #### Update to <b>latest</b> version
 
    ```shell
       npx npu || npx npu --latest
@@ -29,7 +29,7 @@
 
 <br />
 
--  Update to latest <b>major</b> version
+-  #### Update to latest <b>major</b> version
 
    ```shell
       npx npu --major
@@ -42,7 +42,7 @@
 
 <br />
 
--  Update to latest <b>minor</b> version
+-  #### Update to latest <b>minor</b> version
 
    ```shell
       npx npu --minor
@@ -55,7 +55,7 @@
 
 <br />
 
--  Update to latest <b>patch</b> version
+-  #### Update to latest <b>patch</b> version
 
    ```shell
       npx npu --patch
@@ -72,7 +72,7 @@ Then, run `npm i` or `npm i --ignore-scripts` to install new versions 🚀
 
 <hr />
 
--  Only <b>lock current</b> versions
+-  #### Only <b>lock current</b> versions
 
    ```shell
       npx npu --lock
