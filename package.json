@@ -1,7 +1,7 @@
 {
    "name": "packages-update",
    "main": "./bin/index.cjs",
-   "version": "0.1.0",
+   "version": "1.0.0",
    "type": "module",
    "bin": {
       "packages-update": "bin/index.cjs",
