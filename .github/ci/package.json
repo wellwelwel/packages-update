@@ -12,6 +12,6 @@
    "scripts": {
       "update": "npu --patch && npu --minor && npu --major && npu --latest;",
       "restore": "cp -R \"./original.json\" \"./package.json\";",
-      "start": "(npm run update; npm run restore; exit 0) || exit 1;"
+      "start": "(npm run update && npm run restore && exit 0) || exit 1;"
    }
 }
