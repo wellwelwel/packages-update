@@ -11,17 +11,17 @@ jobs:
          matrix:
          os: [ ubuntu-latest, macos-latest, windows-latest ]
          node-version: [ '19', '18', '17', '16', '15' ]
-      steps:
-         - name: ➕ Actions - Checkout
-         uses: actions/checkout@v3
+         steps:
+            - name: ➕ Actions - Checkout
+            uses: actions/checkout@v3
 
-         - name: ➕ Actions - Setup NodeJS
-         uses: actions/setup-node@v3
-         with:
-            node-version: ${{ matrix.node-version }}
+            - name: ➕ Actions - Setup NodeJS
+            uses: actions/setup-node@v3
+            with:
+               node-version: ${{ matrix.node-version }}
 
-         - name: 🧪 Testing Service
-         run: npm run ci
+            - name: 🧪 Testing Service
+            run: npm run ci
    publish-npmjs:
       name: Publish Package to npmjs
       runs-on: ubuntu-latest
