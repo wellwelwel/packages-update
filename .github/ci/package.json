@@ -2,12 +2,12 @@
    "description": "The @c8y/client major version is highest to default latest 😉",
    "dependencies": {
       "@c8y/client": "^1016.0.28",
-      "@vue-flow/additional-components": "^1.2.1",
-      "mysql2": "^1.3.1"
+      "@vue-flow/additional-components": "~1.2.1",
+      "mysql2": ">=1.3.1"
    },
    "devDependencies": {
-      "packages-update": "^1.1.0",
-      "prettier": "^1.4.2"
+      "packages-update": "<=1.1.0",
+      "prettier": "1.4.2"
    },
    "scripts": {
       "update": "npu --patch && npu --minor && npu --major && npu --latest",

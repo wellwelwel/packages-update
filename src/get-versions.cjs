@@ -11,7 +11,7 @@ const getAllVersions = async (packageName) => {
 };
 
 const getLatestPatch = async (packageName, currentVersion) => {
-   const [major, minor] = currentVersion.split('.');
+   const [major, minor] = currentVersion.replace(/[^a-z0-9.]/gi, '').split('.');
    const versions = await getAllVersions(packageName);
    const regex = new RegExp(`^${major}\\.${minor}`);
 
@@ -25,7 +25,7 @@ const getLatestPatch = async (packageName, currentVersion) => {
 };
 
 const getLatestMinor = async (packageName, currentVersion) => {
-   const [major] = currentVersion.split('.');
+   const [major] = currentVersion.replace(/[^a-z0-9.]/gi, '').split('.');
    const versions = await getAllVersions(packageName);
    const regex = new RegExp(`^${major}\\.`);
 

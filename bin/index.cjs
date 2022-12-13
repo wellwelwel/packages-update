@@ -19,10 +19,11 @@ const getVersionBy = require('../src/get-versions.cjs');
 
    const compareVersions = async (dependency) => {
       const dependencyType = dependencies?.[dependency] ? dependencies : devDependencies;
-      const currentVersion = dependencyType[dependency].replace(/[^a-z0-9.-]/gi, '');
+      const currentVersion = dependencyType[dependency];
+      const operators = currentVersion.replace(/[^^><=~]+/g, '');
 
       if (option === 'lock') {
-         dependencyType[dependency] = currentVersion;
+         dependencyType[dependency] = currentVersion.replace(/[^a-z0-9.-]/gi, '');
          return;
       }
 
@@ -40,13 +41,15 @@ const getVersionBy = require('../src/get-versions.cjs');
          return;
       }
 
-      if (currentVersion !== latestVersion) {
-         dependencyType[dependency] = `^${latestVersion}`;
+      const newVersion = `${operators}${latestVersion}`;
+
+      if (currentVersion !== newVersion) {
+         dependencyType[dependency] = newVersion;
 
          hasUpdate.push({
             packageName: dependency,
             previousVersion: currentVersion,
-            newVersion: latestVersion,
+            newVersion: newVersion,
          });
       }
    };
