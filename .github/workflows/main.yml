@@ -21,7 +21,7 @@ jobs:
               node-version: ${{ matrix.node-version }}
 
          - name: 🧪 Testing Service
-           run: npm i --ignore-scripts && npm link "./" && npm run ci && npm i --ignore-scripts
+           run: npm i --ignore-scripts && npm link "./" && npm run ci:remote
 
    publish-npmjs:
       name: Publish Package to npmjs
