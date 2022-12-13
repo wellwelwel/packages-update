@@ -12,6 +12,7 @@ const getVersionBy = require('../src/get-versions.cjs');
    const packageJSON = JSON.parse(packageFile);
    const { dependencies, devDependencies } = packageJSON;
    const hasUpdate = [];
+   const hasError = [];
 
    const option =
       args?.[0] && getVersionBy?.[args?.[0]?.replace(/^--/, '')] ? args?.[0]?.replace(/^--/, '') : 'latest' || 'latest';
@@ -34,6 +35,11 @@ const getVersionBy = require('../src/get-versions.cjs');
 
       const latestVersion = await getVersionBy[option](dependency, currentVersion);
 
+      if (!latestVersion) {
+         hasError.push(latestVersion);
+         return;
+      }
+
       if (currentVersion !== latestVersion) {
          dependencyType[dependency] = `^${latestVersion}`;
 
@@ -52,5 +58,8 @@ const getVersionBy = require('../src/get-versions.cjs');
 
    writeFileSync(path, `${JSON.stringify(packageJSON, null, 3)}${EOL}`);
 
+   hasError.length > 0 && hasUpdate.length > 0 && log();
    hasUpdate.length > 0 ? showUpdated(hasUpdate) : log(`\nNothing to be updated ✅\n`);
+
+   process.exit(hasError.length > 0 ? 1 : 0);
 })();

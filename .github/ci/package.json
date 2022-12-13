@@ -1,0 +1,17 @@
+{
+   "description": "The @c8y/client major version is highest to default latest 😉",
+   "dependencies": {
+      "@c8y/client": "^1016.0.28",
+      "@vue-flow/additional-components": "^1.2.1",
+      "mysql2": "^1.3.1"
+   },
+   "devDependencies": {
+      "packages-update": "^1.1.0",
+      "prettier": "^1.4.2"
+   },
+   "scripts": {
+      "restore": "cp -R \"./original.json\" \"./package.json\";",
+      "start": "(npm run update; npm run restore; exit 0) || exit 1;",
+      "update": "npx npu --patch && npx npu --minor && npx npu --major && npx npu --latest;"
+   }
+}

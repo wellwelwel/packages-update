@@ -15,7 +15,8 @@
       "init:update": "npm run init; npm run update;",
       "update:patch": "npm run update; npm version patch --no-git-tag-version;",
       "update:minor": "npm run update; npm version minor --no-git-tag-version;",
-      "update:major": "npm run update; npm version major --no-git-tag-version;"
+      "update:major": "npm run update; npm version major --no-git-tag-version;",
+      "ci": "cd './.github/ci' && npm run start"
    },
    "devDependencies": {
       "prettier": "^2.8.1"
@@ -27,12 +28,16 @@
       "packages",
       "update",
       "updater",
+      "upgrade",
+      "upgrades",
+      "dependencies",
       "registry",
       "check",
       "checker",
       "version",
       "versions",
-      "new",
+      "npu",
+      "pu",
       "cli"
    ],
    "author": "https://github.com/wellwelwel",
