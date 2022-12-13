@@ -16,7 +16,8 @@
       "update:patch": "npm run update; npm version patch --no-git-tag-version;",
       "update:minor": "npm run update; npm version minor --no-git-tag-version;",
       "update:major": "npm run update; npm version major --no-git-tag-version;",
-      "ci": "cd \"./.github/ci\" && npm run start"
+      "ci:local": "cd \"./.github/ci\" && npm run start",
+      "ci:remote": "cd \"./.github/ci\" && npm run start && npm i --ignore-scripts"
    },
    "devDependencies": {
       "prettier": "^2.8.1"
