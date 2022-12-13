@@ -80,12 +80,25 @@
 
 <hr />
 
+#### Aliases
+
+-  `pu`, `npu` or `packages-update`:
+
+   ```shell
+      npx pu
+      npx npu
+      npx packages-update
+   ```
+
+<hr />
+
 #### Notes
 
 -  When update packages, run `npm i` to install new versions 🚀
 -  When lock packages, run `npm ci` to install the static versions from `package-lock.json` 🔒
 -  This updater looks in <ins>package.json</ins> for `devDependencies` and `dependencies` 🔎
 -  This updater doesn't search or update for tag versions _(alpha, beta, rc, etc.)_ 👾
+-  For now, this updater only works with the `^` operator ⏳
 
 <hr />
 

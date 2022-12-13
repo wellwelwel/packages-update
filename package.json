@@ -5,7 +5,8 @@
    "type": "module",
    "bin": {
       "packages-update": "bin/index.cjs",
-      "npu": "bin/index.cjs"
+      "npu": "bin/index.cjs",
+      "pu": "bin/index.cjs"
    },
    "scripts": {
       "init": "npm i --ignore-scripts;",
