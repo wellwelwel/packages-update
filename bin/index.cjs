@@ -2,7 +2,7 @@
 
 const { readFileSync, writeFileSync } = require('fs');
 const { EOL } = require('os');
-const { log, styles: sh, showUpdated } = require('../src/personalize-console.cjs' || []);
+const { log, styles: sh, showUpdated } = require('../src/personalize-console.cjs');
 const getVersionBy = require('../src/get-versions.cjs');
 
 (async () => {
