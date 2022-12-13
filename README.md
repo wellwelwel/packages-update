@@ -99,7 +99,6 @@
 -  When lock packages, run `npm ci` to install the static versions from `package-lock.json` 🔒
 -  This updater looks in <ins>package.json</ins> for `devDependencies` and `dependencies` 🔎
 -  This updater doesn't search or update for tag versions _(alpha, beta, rc, etc.)_ 👾
--  For now, this updater only works with the `^` operator ⏳
 
 <hr />
 
