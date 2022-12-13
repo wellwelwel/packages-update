@@ -82,12 +82,13 @@
 
 #### Aliases
 
--  `pu`, `npu` or `packages-update`:
+-  `pu`, `npu`, `packages-update` or `npm-packages-update`:
 
    ```shell
       npx pu
       npx npu
       npx packages-update
+      npx npm-packages-update
    ```
 
 <hr />
