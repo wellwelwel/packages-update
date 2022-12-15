@@ -1,7 +1,7 @@
 {
    "name": "packages-update",
    "main": "./bin/index.cjs",
-   "version": "1.2.0",
+   "version": "1.2.1",
    "type": "module",
    "bin": {
       "npu": "bin/index.cjs",
