@@ -24,7 +24,7 @@
    # ...
 ```
 
--  Get the default latest version for each package
+- Get the default latest version for each package
 
 <hr />
 
@@ -37,7 +37,7 @@
    # ...
 ```
 
--  Get the highest version for each package, even if it is not the default latest
+- Get the highest version for each package, even if it is not the default latest
 
 <hr />
 
@@ -50,7 +50,7 @@
    # ...
 ```
 
--  Get the latest minor version for each package, before the next major version
+- Get the latest minor version for each package, before the next major version
 
 <hr />
 
@@ -63,7 +63,7 @@
    # ...
 ```
 
--  Get the latest patch version for each package, before the next minor version
+- Get the latest patch version for each package, before the next minor version
 
 <hr />
 
@@ -76,29 +76,29 @@
    # ...
 ```
 
--  Just locks package versions, without checking versions or updating
+- Just locks package versions, without checking versions or updating
 
 <hr />
 
 #### Aliases
 
--  `pu`, `npu`, `packages-update` or `npm-packages-update`:
+- `pu`, `npu`, `packages-update` or `npm-packages-update`:
 
-   ```shell
-      npx pu
-      npx npu
-      npx packages-update
-      npx npm-packages-update
-   ```
+  ```shell
+     npx pu
+     npx npu
+     npx packages-update
+     npx npm-packages-update
+  ```
 
 <hr />
 
 #### Notes
 
--  When update packages, run `npm i` to install new versions 🚀
--  When lock packages, run `npm ci` to install the static versions from `package-lock.json` 🔒
--  This updater looks in <ins>package.json</ins> for `devDependencies` and `dependencies` 🔎
--  This updater doesn't search or update for tag versions _(alpha, beta, rc, etc.)_ 👾
+- When update packages, run `npm i` to install new versions 🚀
+- When lock packages, run `npm ci` to install the static versions from `package-lock.json` 🔒
+- This updater looks in <ins>package.json</ins> for `devDependencies` and `dependencies` 🔎
+- This updater doesn't search or update for tag versions _(alpha, beta, rc, etc.)_ 👾
 
 <hr />
 
