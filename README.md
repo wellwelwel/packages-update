@@ -21,6 +21,36 @@ Allows you to update, customize according to your needs and easily automate mono
 
 ---
 
+## Table of Contents
+
+- [Install](#install)
+- [Usage](#usage)
+  - [CLI](#cli)
+  - [API (in-code)](#api-in-code)
+  - [Aliases](#aliases)
+  - [Configs](#configs)
+    - [Examples](#examples)
+      - [packageFile](#packagefile)
+      - [followPrefix](#followprefix)
+      - [filter](#filter)
+      - [exclude](#exclude)
+      - [peer](#peer)
+      - [indentation](#indentation)
+      - [registry](#registry)
+      - [quiet](#quiet)
+      - [checkOnly](#checkonly)
+      - [configFile](#configfile)
+      - [overrides](#overrides)
+- [Examples](#examples-1)
+  - [Update to latest version](#update-to-latest-version)
+  - [Update to latest minor version](#update-to-latest-minor-version)
+  - [Update to latest patch version](#update-to-latest-patch-version)
+  - [Update to greatest version](#update-to-greatest-version)
+- [Limitations](#limitations)
+- [Acknowledgements](#acknowledgements)
+
+---
+
 ## Install
 
 [![Install Size](https://packagephobia.com/badge?p=packages-update)](https://packagephobia.com/result?p=packages-update)
@@ -33,73 +63,28 @@ npm i -D packages-update
 
 ## Usage
 
-```sh
-npx pu
-```
-
----
-
-### Update to latest version
-
-Get the default latest version for each package.
+### CLI
 
 ```sh
 npx pu
-npx pu latest           # alt.
-npx pu --target=latest  # alt.
 ```
 
-> ```sh
-> # prettier: ^1.4.2 ➜ ^2.8.1
-> # ...
-> ```
+> You can use `latest`, `minor`, `patch` or `major` as the last **CLI** parameter.
 
----
+### API _(in-code)_
 
-### Update to latest minor version
+```ts
+import { pu } from 'packages-update';
 
-Get the latest minor version for each package.
-
-```sh
-npx pu minor           # alt.
-npx pu --target=minor  # alt.
+await pu();
 ```
 
-> ```sh
-> # prettier: ^1.4.2 ➜ ^1.19.1
-> # ...
-> ```
+You can also use all [available options](#configs):
 
----
-
-### Update to latest patch version
-
-Get the latest patch version for each package.
-
-```sh
-npx pu patch           # alt.
-npx pu --target=patch  # alt.
-```
-
-> ```sh
-> # prettier: ^1.4.2 ➜ ^1.4.4
-> # ...
-> ```
-
----
-
-### Update to greatest version
-
-- Get the highest version for each package, even if it is not the default latest
-
-```sh
-npx pu major           # alt.
-npx pu --target=major  # alt.
-```
-
-```sh
-# prettier: ^1.4.2 ➜ ^2.8.1
-# ...
+```ts
+await pu({
+  target: 'latest',
+});
 ```
 
 ---
@@ -116,57 +101,26 @@ npx packages-update
 
 ---
 
-### API _(in-code)_
-
-#### ESM
-
-```ts
-import { pu } from 'packages-update';
-```
-
-#### CJS
-
-```ts
-const { pu } = require('packages-update');
-```
-
-#### Usage
-
-```ts
-await pu();
-```
-
-You can also use all [available options](#configs):
-
-```ts
-await pu({
-  quiet: true,
-  // ...
-});
-```
-
----
-
 ### Configs
 
 You can customize the global settings by creating a `.purc.json` config file.
 
 - **CLI** and **API** _(**in-code**)_ options will overwrite the global options.
 
-| Option       | CLI             | Description                                                     | Default Value          |
-| ------------ | --------------- | --------------------------------------------------------------- | ---------------------- |
-| packageFile  | --package-file  | _Relative path to package.json file_                            | `"./package.json"`     |
-| followPrefix | --follow-prefix | _Update dependencies respecting version prefixes_               | `false`                |
-| target       | --target        | _Type of update strategy (e.g., latest, major, minor, patch)_   | `"latest"`             |
-| filter       | --filter        | _Filter the specified dependencies to include in the update_    | `[]`                   |
-| exclude      | --exclude       | _Exclude the specified dependencies to exclude from the update_ | `[]`                   |
-| peer         | --peer          | _Update peer dependencies_                                      | `false`                |
-| indentation  | --indentation   | _JSON indentation level_                                        | `2`                    |
-| registry     | --registry      | _Specify the registry URL_                                      | `"registry.npmjs.org"` |
-| quiet        | --quiet         | _Suppress output messages_                                      | `false`                |
-| checkOnly    | --check-only    | _Perform checks without applying updates_                       | `false`                |
-| configFile   | --config-file   | _Custom config path_                                            | `"./.purc.json"`       |
-| overrides    |                 | _Override update strategy for specific packages_                |                        |
+| Option       | CLI             | Description                                                              | Default Value          |
+| ------------ | --------------- | ------------------------------------------------------------------------ | ---------------------- |
+| packageFile  | --package-file  | _Relative path to package.json file_                                     | `"./package.json"`     |
+| followPrefix | --follow-prefix | _Update dependencies respecting version prefixes_                        | `false`                |
+| target       | --target        | _Type of update strategy (e.g., `latest`, `major`, `minor` and `patch`)_ | `"latest"`             |
+| filter       | --filter        | _Filter the specified dependencies to include in the update_             | `[]`                   |
+| exclude      | --exclude       | _Exclude the specified dependencies to exclude from the update_          | `[]`                   |
+| peer         | --peer          | _Update peer dependencies_                                               | `false`                |
+| indentation  | --indentation   | _JSON indentation level_                                                 | `2`                    |
+| registry     | --registry      | _Specify the registry URL_                                               | `"registry.npmjs.org"` |
+| quiet        | --quiet         | _Suppress output messages_                                               | `false`                |
+| checkOnly    | --check-only    | _Perform checks without applying updates_                                | `false`                |
+| configFile   | --config-file   | _Custom config path_                                                     | `"./.purc.json"`       |
+| overrides    |                 | _Override update strategy for specific packages_                         |                        |
 
 ---
 
@@ -377,11 +331,78 @@ await pu({
 
 ---
 
-## Notes
+## Examples
 
-- 🚀 When update packages, run `npm i`, `yarn install`, `pnpm install` or `bun install` to install new versions.
-- 🔎 This updater looks the <ins>package.json</ins> for `devDependencies`, `dependencies` and (if configured) `peerDependencies`.
-- ⚠️ This updater doesn't search or update for tag and local versions _(alpha, beta, rc, etc.)_.
+### Update to latest version
+
+Get the default latest version for each package.
+
+```sh
+npx pu
+npx pu latest
+npx pu --target=latest  # alt.
+```
+
+> ```sh
+> # prettier: ^1.4.2 ➜ ^2.8.1
+> # ...
+> ```
+
+---
+
+### Update to latest minor version
+
+Get the latest minor version for each package.
+
+```sh
+npx pu minor
+npx pu --target=minor  # alt.
+```
+
+> ```sh
+> # prettier: ^1.4.2 ➜ ^1.19.1
+> # ...
+> ```
+
+---
+
+### Update to latest patch version
+
+Get the latest patch version for each package.
+
+```sh
+npx pu patch
+npx pu --target=patch  # alt.
+```
+
+> ```sh
+> # prettier: ^1.4.2 ➜ ^1.4.4
+> # ...
+> ```
+
+---
+
+### Update to greatest version
+
+Get the highest version for each package, even if it is not the default latest.
+
+```sh
+npx pu major
+npx pu --target=major  # alt.
+```
+
+```sh
+# prettier: ^1.4.2 ➜ ^2.8.1
+# ...
+```
+
+---
+
+## Limitations
+
+- When update packages, run `npm i`, `yarn install`, `pnpm install` or `bun install` to install new versions.
+- This updater looks the <ins>package.json</ins> for `devDependencies`, `dependencies` and (if configured) `peerDependencies`.
+- This updater doesn't search or update for tag and local versions _(alpha, beta, rc, etc.)_.
 
 ---
 
