@@ -1,0 +1,2 @@
+fixtures/** linguist-vendored
+src/bin/** linguist-language=TypeScript

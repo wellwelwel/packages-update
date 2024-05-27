@@ -1,58 +1,72 @@
 {
-   "name": "packages-update",
-   "main": "./bin/index.cjs",
-   "version": "1.2.1",
-   "type": "module",
-   "bin": {
-      "npu": "bin/index.cjs",
-      "pu": "bin/index.cjs",
-      "packages-update": "bin/index.cjs",
-      "npm-packages-update": "bin/index.cjs"
-   },
-   "scripts": {
-      "init": "npm i --ignore-scripts;",
-      "update": "npx npu; npm run init;",
-      "init:update": "npm run init; npm run update;",
-      "update:patch": "npm run update; npm version patch --no-git-tag-version;",
-      "update:minor": "npm run update; npm version minor --no-git-tag-version;",
-      "update:major": "npm run update; npm version major --no-git-tag-version;",
-      "ci:local": "cd \"./.github/ci\" && npm run start:local",
-      "ci:remote": "cd \"./.github/ci\" && npm run start:remote"
-   },
-   "devDependencies": {
-      "prettier": "^2.8.1"
-   },
-   "license": "MIT",
-   "keywords": [
-      "npm",
-      "package",
-      "packages",
-      "update",
-      "updater",
-      "upgrade",
-      "upgrades",
-      "dependencies",
-      "registry",
-      "check",
-      "checker",
-      "version",
-      "versions",
-      "npu",
-      "pu",
-      "cli"
-   ],
-   "author": "https://github.com/wellwelwel",
-   "description": "📦 A basic updater for packages, without any dependencies",
-   "engines": {
-      "node": ">=14.18.0 || >=16.0.0",
-      "npm": ">=7.0.2"
-   },
-   "repository": {
-      "type": "git",
-      "url": "git+https://github.com/wellwelwel/packages-update.git"
-   },
-   "bugs": {
-      "url": "https://github.com/wellwelwel/packages-update/issues"
-   },
-   "homepage": "https://github.com/wellwelwel/packages-update#readme"
+  "name": "packages-update",
+  "version": "1.2.1",
+  "main": "./lib/index.js",
+  "type": "commonjs",
+  "bin": {
+    "pu": "lib/bin/index.js",
+    "packages-update": "lib/bin/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "postbuild": "shx chmod +x lib/bin/index.js",
+    "update": "tsx src/bin/index.ts",
+    "test": "poku --parallel",
+    "eslint:checker": "eslint . --ext .js,.ts",
+    "eslint:fix": "eslint . --fix --config ./.eslintrc.json",
+    "lint:checker": "npm run eslint:checker && npm run prettier:checker",
+    "lint:fix": "npm run eslint:fix && npm run prettier:fix",
+    "prettier:checker": "prettier --check .",
+    "prettier:fix": "prettier --write .github/workflows/*.yml ."
+  },
+  "license": "MIT",
+  "keywords": [
+    "npm",
+    "package",
+    "packages",
+    "update",
+    "updater",
+    "upgrade",
+    "upgrades",
+    "dependencies",
+    "registry",
+    "check",
+    "checker",
+    "version",
+    "versions",
+    "npu",
+    "ncu",
+    "package.json",
+    "management",
+    "npm-check-updates",
+    "cli"
+  ],
+  "author": "https://github.com/wellwelwel",
+  "description": "📦 A flexible and lightweight updater for packages",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wellwelwel/packages-update.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wellwelwel/packages-update/issues"
+  },
+  "homepage": "https://github.com/wellwelwel/packages-update#readme",
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "@typescript-eslint/eslint-plugin": "^7.10.0",
+    "@typescript-eslint/parser": "^7.10.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-prettier": "^5.1.3",
+    "poku": "^1.13.0",
+    "prettier": "^3.2.5",
+    "shx": "^0.3.4",
+    "tsx": "^4.11.0",
+    "typescript": "^5.4.5"
+  }
 }
