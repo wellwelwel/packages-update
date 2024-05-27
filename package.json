@@ -11,7 +11,13 @@
     "build": "tsc",
     "postbuild": "shx chmod +x lib/bin/index.js",
     "update": "tsx src/bin/index.ts",
-    "test": "poku --parallel"
+    "test": "poku --parallel",
+    "eslint:checker": "eslint . --ext .js,.ts",
+    "eslint:fix": "eslint . --fix --config ./.eslintrc.json",
+    "lint:checker": "npm run eslint:checker && npm run prettier:checker",
+    "lint:fix": "npm run eslint:fix && npm run prettier:fix",
+    "prettier:checker": "prettier --check .",
+    "prettier:fix": "prettier --write .github/workflows/*.yml ."
   },
   "license": "MIT",
   "keywords": [
