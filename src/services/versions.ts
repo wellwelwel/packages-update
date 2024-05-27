@@ -10,6 +10,7 @@ export const getLatest = (packageData: PackageData): string =>
   packageData?.tags?.latest ||
   packageData.versions[packageData.versions.length - 1];
 
+// TODO: Not currently in use
 export const getLatestByTag = (
   tag: string,
   packageData: PackageData
