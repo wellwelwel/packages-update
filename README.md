@@ -29,19 +29,18 @@ Allows you to update, customize according to your needs and easily automate mono
   - [API (in-code)](#api-in-code)
   - [Aliases](#aliases)
   - [Configs](#configs)
-    - [Examples](#examples)
-      - [packageFile](#packagefile)
-      - [followPrefix](#followprefix)
-      - [filter](#filter)
-      - [exclude](#exclude)
-      - [peer](#peer)
-      - [indentation](#indentation)
-      - [registry](#registry)
-      - [quiet](#quiet)
-      - [checkOnly](#checkonly)
-      - [configFile](#configfile)
-      - [overrides](#overrides)
-- [Examples](#examples-1)
+    - [packageFile](#packagefile)
+    - [followPrefix](#followprefix)
+    - [filter](#filter)
+    - [exclude](#exclude)
+    - [peer](#peer)
+    - [indentation](#indentation)
+    - [registry](#registry)
+    - [quiet](#quiet)
+    - [checkOnly](#checkonly)
+    - [configFile](#configfile)
+    - [overrides](#overrides)
+- [Examples](#examples)
   - [Update to latest version](#update-to-latest-version)
   - [Update to latest minor version](#update-to-latest-minor-version)
   - [Update to latest patch version](#update-to-latest-patch-version)
@@ -124,17 +123,15 @@ You can customize the global settings by creating a `.purc.json` config file.
 
 ---
 
-#### Examples
+#### packageFile
 
-##### packageFile
-
-###### CLI
+##### CLI
 
 ```sh
 npx pu --package-file="./custom/package.json"
 ```
 
-###### `.purc.json` and API _(in-code)_
+##### `.purc.json` and API _(in-code)_
 
 ```json
 {
@@ -144,15 +141,15 @@ npx pu --package-file="./custom/package.json"
 
 ---
 
-##### followPrefix
+#### followPrefix
 
-###### CLI
+##### CLI
 
 ```sh
 npx pu --follow-prefix
 ```
 
-###### `.purc.json` and API _(in-code)_
+##### `.purc.json` and API _(in-code)_
 
 ```json
 {
@@ -162,15 +159,15 @@ npx pu --follow-prefix
 
 ---
 
-##### filter
+#### filter
 
-###### CLI
+##### CLI
 
 ```sh
 npx pu --filter=react,vue
 ```
 
-###### `.purc.json` and API _(in-code)_
+##### `.purc.json` and API _(in-code)_
 
 ```json
 {
@@ -180,15 +177,15 @@ npx pu --filter=react,vue
 
 ---
 
-##### exclude
+#### exclude
 
-###### CLI
+##### CLI
 
 ```sh
 npx pu --exclude=react,vue
 ```
 
-###### `.purc.json` and API _(in-code)_
+##### `.purc.json` and API _(in-code)_
 
 ```json
 {
@@ -198,15 +195,15 @@ npx pu --exclude=react,vue
 
 ---
 
-##### peer
+#### peer
 
-###### CLI
+##### CLI
 
 ```sh
 npx pu --peer
 ```
 
-###### `.purc.json` and API _(in-code)_
+##### `.purc.json` and API _(in-code)_
 
 ```json
 {
@@ -216,15 +213,15 @@ npx pu --peer
 
 ---
 
-##### indentation
+#### indentation
 
-###### CLI
+##### CLI
 
 ```sh
 npx pu --indentation=4
 ```
 
-###### `.purc.json` and API _(in-code)_
+##### `.purc.json` and API _(in-code)_
 
 ```json
 {
@@ -234,17 +231,17 @@ npx pu --indentation=4
 
 ---
 
-##### registry
+#### registry
 
 > `https` only.
 
-###### CLI
+##### CLI
 
 ```sh
 npx pu --registry="registry.custom.org"
 ```
 
-###### `.purc.json` and API _(in-code)_
+##### `.purc.json` and API _(in-code)_
 
 ```json
 {
@@ -254,15 +251,15 @@ npx pu --registry="registry.custom.org"
 
 ---
 
-##### quiet
+#### quiet
 
-###### CLI
+##### CLI
 
 ```sh
 npx pu --quiet
 ```
 
-###### `.purc.json` and API _(in-code)_
+##### `.purc.json` and API _(in-code)_
 
 ```json
 {
@@ -272,15 +269,15 @@ npx pu --quiet
 
 ---
 
-##### checkOnly
+#### checkOnly
 
-###### CLI
+##### CLI
 
 ```sh
 npx pu --check-only
 ```
 
-###### `.purc.json` and API _(in-code)_
+##### `.purc.json` and API _(in-code)_
 
 ```json
 {
@@ -290,17 +287,17 @@ npx pu --check-only
 
 ---
 
-##### configFile
+#### configFile
 
 > Not available in the configuration file itself.
 
-###### CLI
+##### CLI
 
 ```sh
 npx pu --config-file=./custom/.purc.json
 ```
 
-###### API _(in-code)_
+##### API _(in-code)_
 
 ```ts
 await pu({
@@ -310,11 +307,11 @@ await pu({
 
 ---
 
-##### overrides
+#### overrides
 
 > Not available for **CLI**.
 
-###### `.purc.json` and API _(in-code)_
+##### `.purc.json` and API _(in-code)_
 
 ```json
 {
@@ -400,7 +397,7 @@ npx pu --target=major  # alt.
 
 ## Limitations
 
-- When update packages, run `npm i`, `yarn install`, `pnpm install` or `bun install` to install new versions.
+- After updating package.json, run `npm i`, `yarn install`, `pnpm install` or `bun install` to install new versions.
 - This updater looks the <ins>package.json</ins> for `devDependencies`, `dependencies` and (if configured) `peerDependencies`.
 - This updater doesn't search or update for tag and local versions _(alpha, beta, rc, etc.)_.
 
