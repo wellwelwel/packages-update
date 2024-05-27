@@ -76,6 +76,12 @@ export type Configs = {
       registry?: string;
     };
   };
+  /**
+   * Custom config path
+   *
+   * @default "./.purc.json"
+   */
+  configFile?: string;
 };
 
 export type Result = {
