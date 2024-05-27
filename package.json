@@ -42,7 +42,7 @@
     "cli"
   ],
   "author": "https://github.com/wellwelwel",
-  "description": "📦 A basic updater for packages, without any dependencies",
+  "description": "📦 A flexible and lightweight updater for packages",
   "engines": {
     "node": ">=8.0.0"
   },
