@@ -66,7 +66,7 @@ export const checker = async (configs: Configs) => {
           : configs?.registry || 'registry.npmjs.org'
       );
 
-      if (!versions) {
+      if (!versions || /\.\//.test(version) || /[a-z]/i.test(version)) {
         !configs?.quiet && logProgress(++count, total);
         return;
       }

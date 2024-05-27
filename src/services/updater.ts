@@ -53,8 +53,8 @@ export const updater = async (configs: Configs) => {
         `${bold}${name}${reset}   ${reset}${yellow}${dim}${operator}${reset}${yellow}${currentVersion}${reset} ${dim}➜${reset} ${green}${dim}${operator}${reset}${green}${bold}${newVersion}${reset}`
       );
 
-    packageJSON.json[dependencyType][result.name] =
-      `${result.operator}${result.newVersion}`;
+    packageJSON.json[dependencyType][result.name.trim()] =
+      `${result.operator.trim()}${result.newVersion.trim()}`;
   });
 
   if (!configs?.checkOnly) {
