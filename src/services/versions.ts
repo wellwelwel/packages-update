@@ -1,5 +1,5 @@
 import { request } from './request.js';
-import { PackageData } from '../@types/packages.js';
+import { PackageData, PackageSource } from '../@types/packages.js';
 
 const filterSemver = (version: string): boolean => !/[^0-9.]/gi.test(version);
 
@@ -67,6 +67,15 @@ export const getLatestMajor = (
   return majorVersions[majorVersions.length - 1] || currentVersion;
 };
 
+export const mapVersions = (
+  PackageSource: PackageSource
+): PackageData | false => {
+  return {
+    versions: Object.keys(PackageSource.versions),
+    tags: PackageSource['dist-tags'],
+  };
+};
+
 export const getVersions = async (
   pkg: string,
   registry: string
@@ -77,8 +86,5 @@ export const getVersions = async (
     return false;
   }
 
-  return {
-    versions: Object.keys(packageSource.body.versions),
-    tags: packageSource.body['dist-tags'],
-  };
+  return mapVersions(packageSource.body);
 };

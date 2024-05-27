@@ -10,7 +10,8 @@
   "scripts": {
     "build": "tsc",
     "postbuild": "shx chmod +x lib/bin/index.js",
-    "update": "tsx src/bin/index.ts"
+    "update": "tsx src/bin/index.ts",
+    "test": "poku --parallel"
   },
   "license": "MIT",
   "keywords": [
