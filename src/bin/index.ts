@@ -2,14 +2,15 @@
 
 import { Configs } from '../@types/configs.js';
 import { UpdaterManager } from '../@types/packages.js';
-import { getArg, hasArg } from '../helpers/get-args.js';
+import { getArg, getLastParam, hasArg } from '../helpers/get-args.js';
 import { checker } from '../services/checker.js';
 import { getConfigs } from '../services/configs.js';
 import { updater } from '../services/updater.js';
 
 const configFile = getArg('config-file');
 const packageFile = getArg('package-file');
-const target = getArg<UpdaterManager>('target');
+const target =
+  getLastParam<UpdaterManager>() || getArg<UpdaterManager>('target');
 const filter = getArg('filter')?.split(',');
 const exclude = getArg('exclude')?.split(',');
 const indentation = getArg('indentation');

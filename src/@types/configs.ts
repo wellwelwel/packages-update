@@ -22,13 +22,13 @@ export type Configs = {
   /**
    * Filter the specified dependencies to include in the update
    *
-   * @default undefined
+   * @default []
    */
   filter?: string[];
   /**
    * Exclude the specified dependencies to exclude from the update
    *
-   * @default undefined
+   * @default []
    */
   exclude?: string[];
   /**
@@ -62,6 +62,12 @@ export type Configs = {
    */
   checkOnly?: boolean;
   /**
+   * Custom config path
+   *
+   * @default "./.purc.json"
+   */
+  configFile?: string;
+  /**
    * Override update strategy for specific packages
    */
   overrides?: {
@@ -76,12 +82,6 @@ export type Configs = {
       registry?: string;
     };
   };
-  /**
-   * Custom config path
-   *
-   * @default "./.purc.json"
-   */
-  configFile?: string;
 };
 
 export type Result = {
