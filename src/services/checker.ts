@@ -88,6 +88,12 @@ export const checker = async (configs: Configs) => {
         return;
       }
 
+      if (!(target in useUpdater)) {
+        throw new Error(
+          `${target} is not a valid target\nCurrent dependency: ${name}`
+        );
+      }
+
       const currentVersion = removeOperator(version);
 
       const newVersion =
